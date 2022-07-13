@@ -7,7 +7,7 @@ terraform {
       version = "~> 4.0"
     }
   }
-
+/*
   backend "s3" {
 
     bucket         = "terraform-state-2416"
@@ -17,22 +17,42 @@ terraform {
     encrypt        = true
 
   }
-
+*/
 }
 
 provider "aws" {
   region = "us-east-2"
+  alias  = "primary"
 }
 
-resource "aws_db_instance" "example" {
-  identifier_prefix   = "terraform-up-and-running"
-  engine              = "mysql"
-  allocated_storage   = 10
-  instance_class      = "db.t2.micro"
-  skip_final_snapshot = true
-  db_name             = "example_database"
+provider "aws" {
+  region = "us-west-1"
+  alias  = "replica"
+}
 
-  # How should we set the username and password?
-  username = var.db_username
-  password = var.db_password
+module "mysql_primary" {
+  source = "../../../../modules/data-stores/mysql"
+
+   providers = {
+    aws = aws.primary
+  }
+
+
+  db_name     = var.db_name
+  db_username = var.db_username
+  db_password = var.db_password
+
+  # Must be enabled to support replication
+  backup_retention_period = 1
+}
+
+module "mysql_replica" {
+  source = "../../../../modules/data-stores/mysql"
+
+  providers = {
+    aws = aws.replica
+  }
+
+  # Make this a replica of the primary
+  replicate_source_db = module.mysql_primary.arn
 }

@@ -7,7 +7,7 @@ terraform {
       version = "~> 4.0"
     }
   }
-  
+  /*
   backend "s3" {
     bucket         = "terraform-state-2416"
     key            = "global/s3/terraform.tfstate"
@@ -16,7 +16,7 @@ terraform {
     encrypt        = true
 
   }
- 
+ */
 }
 
 
