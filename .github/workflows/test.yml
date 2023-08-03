@@ -12,7 +12,8 @@ jobs:
         EXPECTED="ABC"
         ACTUAL="ABD"
 
-        [ "$EXPECTED" = "$ACTUAL" ]; exit 0
+        [ "$EXPECTED" = "$ACTUAL" ] 
+        exit 0
   
         
         
