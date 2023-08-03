@@ -1,9 +1,9 @@
 name: Run Action Tests
 
 on: 
-  push
+  pull_request
 
-Jobs:
+jobs:
   test:
     runs-on: ubuntu-latest
     steps:
