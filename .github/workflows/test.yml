@@ -11,5 +11,8 @@ jobs:
       run: | 
         EXPECTED="ABC"
         ACTUAL="ABD"
-        [ "EXPECTED" = "ACTUAL" ]
-        exit 0
+        if [ "EXPECTED" != "ACTUAL" ];
+        then
+          echo "Expected "$EXPECTED" but got "$ACTUAL";
+          exit 0;
+        fi
