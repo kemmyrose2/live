@@ -11,6 +11,6 @@ jobs:
       run: | 
         EXPECTED="ABC"
         ACTUAL="ABD"
-        [ "EXPECTED" = "ACTUAL" ]
+        [ "EXPECTED" = "ACTUAL" ];
         exit 0
         
