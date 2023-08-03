@@ -1,0 +1,15 @@
+name: Run Action Tests
+
+on: 
+  push
+
+Jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Actions
+      run: | 
+        EXPECTED="ABC"
+        ACTUAL="ABD"
+        [ "EXPECTED" = "ACTUAL" ]
+        exit 0
