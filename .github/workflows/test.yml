@@ -1,0 +1,19 @@
+name: Run Action Tests
+
+on: 
+  pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Actions
+      run: | 
+        EXPECTED="ABC"
+        ACTUAL="ABD"
+
+        [ "$EXPECTED" = "$ACTUAL" ] 
+        exit 0
+  
+        
+        
