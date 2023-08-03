@@ -13,6 +13,6 @@ jobs:
         ACTUAL="ABD"
         if [ "EXPECTED" != "ACTUAL" ];
         then
-          echo "Expected "$EXPECTED" but got "$ACTUAL";
+          echo "Expected '$EXPECTED' but got '$ACTUAL'";
           exit 0;
         fi
